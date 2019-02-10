@@ -4,7 +4,6 @@ title: About
 permalink: /about/
 ---
 
-Hi! Thanks for checking out my blog. <br>
 I'm Jake, an aspiring Pentester. <br>
 
 <hr>
