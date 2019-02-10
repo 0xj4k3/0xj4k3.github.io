@@ -1,0 +1,71 @@
+---
+layout: default
+---
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script>
+var widget = null;
+var song_indexes = new Array();
+var current_index = 0;
+
+$(function() {
+    var iframe = document.querySelector('#soundcloud_player iframe');
+    widget = SC.Widget(iframe);        
+    widget.bind(SC.Widget.Events.READY, function() {
+        widget.bind(SC.Widget.Events.FINISH, function() {        
+            play_next_shuffled_song();
+        });
+
+        widget.getSounds(function(sounds) {
+            create_shuffled_indexes(sounds.length);
+            play_next_shuffled_song();
+        });               
+    });
+    $("#button_sc_next").on("click", play_next_shuffled_song);
+});
+
+function play_next_shuffled_song() {
+    if (current_index >= song_indexes.length) {
+        current_index = 0;
+    }
+    var track_number = song_indexes[current_index];
+    current_index++;
+    widget.skip(track_number);
+    console.log(track_number);
+    widget.pause();
+}
+
+function create_shuffled_indexes (num_songs) {
+    for (var i=0;i<num_songs;i++) {
+        song_indexes.push(i);
+    }
+    song_indexes = shuffle(song_indexes);
+}
+
+//@ http://jsfromhell.com/array/shuffle [v1.0]
+function shuffle(o){ //v1.0
+    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
+</script>
+<div class="posts">
+  {% for post in site.posts %}
+    <article class="post">
+
+      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+
+      <div class="entry">
+        {{ post.excerpt }}
+      </div>
+
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    </article>
+  {% endfor %}
+
+  
+</div>
+
+<body id="soundcloud_player">
+  <iframe src="https://w.soundcloud.com/player/?url=/digging-for-dinosaurs" width=100% height=100px></iframe>
+  <button id="button_sc_next">next</button>
+</body>

@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+<article class="post">
+  <h1>{{ page.title }}</h1>
+  
+  <div class="entry">
+    {{ content }}
+  </div>
+
+  <div class="date">
+    Written on {{ page.date | date: "%B %e, %Y" }}
+  </div>
+  
+  <!-- AddToAny BEGIN -->
+  <div class="a2a_kit a2a_default_style">
+  <a class="a2a_dd" href="https://www.addtoany.com/share_save">Share</a>
+  <span class="a2a_divider"></span>
+  <a class="a2a_button_facebook"></a>
+  <a class="a2a_button_twitter"></a>
+  <a class="a2a_button_google_plus"></a>
+  <a class="a2a_button_linkedin"></a>
+  <a class="a2a_button_line"></a>
+  <a class="a2a_button_email"></a>
+  </div>
+  <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+  <!-- AddToAny END -->
+
+  {% include disqus.html disqus_identifier=page.disqus_identifier %}
+</article>
