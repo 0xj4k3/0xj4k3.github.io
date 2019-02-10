@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DIY Mini Greenhouse
+title: 90 days to OSCP.
 ---
 
 Giving an old TV stand a second life by turning it into a mini greenhouse. Ideas to be more self-sufficient with only a little inner city garden space available. The perfect project for a long Easter weekend.
